@@ -1,0 +1,19 @@
+services:
+  apigateway:
+    build: ./apigateway
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+  # services
+  backend:
+    build: ./backend
+    expose:
+      - "8000"
+        
+          
+
+
+# curl -X POST https://c3065d3e066c.ngrok-free.app /log -H "Content-Type: application/json" -d '{"message": "test"}'
+# curl -X POST https://c3065d3e066c.ngrok-free.app/log -H "Content-Type: application/json" -H "ngrok-skip-browser-warning: true" -d '{"message": "HI_LOL"}'
