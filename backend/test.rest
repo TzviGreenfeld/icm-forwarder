@@ -1,0 +1,8 @@
+# POST http://172.173.143.183:8080/log
+
+POST http://localhost:8000/log
+Content-Type: application/json
+
+{
+    "test": "vsboyysdfsdfsdfy"
+}

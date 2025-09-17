@@ -1,13 +1,21 @@
-FROM python:3.11-slim
+FROM node:20-slim
+
+# Install Chromium for whatsapp-web.js
+RUN apt-get update && apt-get install -y chromium && rm -rf /var/lib/apt/lists/*
+
+# Set Puppeteer to use system Chromium
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 
 WORKDIR /app
 
-# Install uv (faster than pip)
-RUN pip install uv
+# Copy package.json and install dependencies
+COPY package*.json ./
+RUN npm install
 
-# Install dependencies with uv
-RUN uv pip install fastapi uvicorn sqlalchemy asyncpg psycopg2-binary alembic --system
+# Copy your files
+COPY . .
 
-COPY *.py ./
+EXPOSE 8000
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+CMD ["node", "server.js"]

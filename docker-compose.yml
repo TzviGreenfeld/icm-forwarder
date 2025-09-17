@@ -11,6 +11,12 @@ services:
     build: ./backend
     expose:
       - "8000"
+    environment:
+      - DESTINATION_CHAT_NAME="המאפייה הקהילתית של אסף וריקי מחתרתי"
+      - DESTINATION_CHAT_ID=120363404694210667@g.us
+      - RESEND_API_KEY=re_RCJ4J3pX_GZroroDhanNd2bvFpZabHYfJ
+      - QR_EMAIL_TO=tzvigreenfield@gmail.com
+
         
           
 
